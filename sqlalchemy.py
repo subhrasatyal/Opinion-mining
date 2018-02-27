@@ -1,4 +1,8 @@
-import sqlalchemy
+from sqlalchemy import *
+from sqlalchemy import Column, Integer, String, MetaData
+meta = MetaData()
+con = engine.connect()
+#Base = declarative_base()
 def connect(user, password, db, host='localhost', port=5432):
 #ret a connection obj and metadata obj
     url = 'postgresql://{}:{}@{}:{}/{}'
@@ -11,17 +15,21 @@ def connect(user, password, db, host='localhost', port=5432):
     return con, meta
     #con, meta = connect('zomato', 'zomatoreviews', 'reviews')
     
-    Engine(postgresql://zomato:***@localhost:5432/reviews)
+    engine = create_engine('postgresql://zomato:***@localhost:5432/reviews')
     
-    MetaData(bind=Engine(postgresql://zomato:***@localhost:5432/reviews))
-from sqlalchemy import Table, Column, Integer, String, MetaData
-name = Table('name', meta,
+    MetaData(bind=Engine('postgresql://zomato:***@localhost:5432/reviews'))
+
+name = Table ('name', meta,
     Column('name', String),
     Column('review', String),
-    Column('rating', Integer, primary_key=True)
+    Column('rating', Integer),
+    Column('customerid', Integer, primary_key=True)
 )
 
 meta.create_all(con)
 
 
+    
+
+    
     
