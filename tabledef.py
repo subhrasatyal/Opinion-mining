@@ -9,7 +9,12 @@ connection = engine.connect()
 
 Base = declarative_base()
 class Student(Base):
-    """"""
+    def __init__(self, username, firstname, lastname, university):
+        self.username = username
+        self.firstname = firstname
+        self.lastname = lastname
+        self.university = university	
+    
     __tablename__ = "student"
  
     id = Column(Integer, primary_key=True) # true is for auto inc
@@ -17,10 +22,5 @@ class Student(Base):
     firstname = Column(String)
     lastname = Column(String)
     university = Column(String)
-def __init__(self, username, firstname, lastname, university):
-        
-        self.username = username
-        self.firstname = firstname
-        self.lastname = lastname
-        self.university = university
+
 Base.metadata.create_all(engine)
